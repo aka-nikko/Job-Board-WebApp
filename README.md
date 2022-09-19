@@ -4,12 +4,15 @@
 * It lets users post Job Openings and apply for jobs.
 
 ## Features
-* Register and Login to the website.
-* List Section - Lets users see which jobs are active.
-* Publish Section - Lets users publish Job Openings.
-* Apply - Lets users apply for jobs.
-* Settings - Change Password or Change Profile Picture.
-* Users can also chat with each other.
+* Employers and Applicants can Signup and Login to the app.
+* Employers can post a job listing on a common job board shared between other users.
+* The listing contains: title, description, location, deadline, address, etc.
+* Job listings are presented as cards on a board.
+* Based upon how far the job listing is from the deadline, the cards have different colors.
+* Employers can rearrange the cards on the board by drag and drop to help them modify the order in which they’re displayed to the applicants.
+* Employers can archive a job listing.
+* Applicants can mark their interest on any available and active job listing.
+* Employers can see interested applicants and chat with them.
 
 ## Requirements
 * [Python](https://www.python.org/downloads/)

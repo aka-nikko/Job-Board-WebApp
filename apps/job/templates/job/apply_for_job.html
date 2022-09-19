@@ -1,0 +1,13 @@
+{% extends 'job/base.html' %}
+{% block content %}
+    <div style="margin-top: 6%;" class="text-box">
+        <form method="POST" action=".">
+            {% csrf_token %} 
+            <h2 style="font-size: 30px;margin-bottom: 5px;">Apply For Job</h2>
+            <h1 style="font-size: 30px;margin-bottom: 5px;">{{job.title}}</h1>
+            <div><textarea class="body" name="content" id="id_content" style="white-space: pre-wrap;border-color: white;height: 150px;" placeholder="Content" required="required"></textarea></div>
+            <div><textarea class="body" name="experience" id="id_experience" style="white-space: pre-wrap;border-color: white;height: 100px;" placeholder="Experience" required="required"></textarea></div>
+            <button type="submit" class="red-btn" style="margin-top: 2%;margin-bottom: 2%;">Apply</button>
+        </form>
+    </div>
+{% endblock %}

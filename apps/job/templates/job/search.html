@@ -1,0 +1,36 @@
+{% extends 'job/base.html' %}
+{% block content %}
+    <div class="text-box1">
+        <h1>Job Listings</h1>
+        <h2 style="margin-bottom: -20px;">Jobs:</h2>
+
+        {% for job in jobs %}
+        <div class="comments-container" >
+            <ul id="comments-list" class="comments-list">
+                    <div class="comment-box">
+                        {% if job.company_size == "size_1-9" %}
+                            <div class="comment-head" style="background-color: red;">
+                        {% elif job.company_size == "size_10-49" %}
+                            <div class="comment-head" style="background-color: blue;">
+                        {% elif job.company_size == "size_50-99" %}
+                            <div class="comment-head" style="background-color: yellow;">
+                        {% elif job.company_size == "size_100" %}
+                            <div class="comment-head" style="background-color: green;">
+                        {% endif %}
+                            <span style="color: rgb(9, 16, 107);">{{job.created_at}}</span>
+                        </div>
+                        <div class="comment-content" style="font-weight:bold;font-size: 25px; padding: 5px;border-bottom: 1px solid #E5E5E5;">
+                            <a style="text-decoration: none;" href="{% url 'job_detail' job.id %}">{{job.title}}</a></div>
+                        <div class="comment-content" style="border-bottom: 1px solid #E5E5E5;white-space: pre-wrap;text-align: justify;">{{job.short_description}}</div>
+                    </div>
+            </ul>
+        </div>
+        {% endfor %}
+        <div style="margin-bottom: 20px;margin-top: 10px;">
+            {%if data.has_previous%}
+            <a href="{%url 'explore'%}?page={{data.previous_page_number}}" style="color: white;" class="blue-btn">Previous</a> {%endif%} {%if data.has_next%}
+            <a href="{%url 'explore'%}?page={{data.next_page_number}}" style="color: white;" class="blue-btn">Next</a> {%endif%}
+        </div>
+    </div>
+    <br>
+{% endblock %}

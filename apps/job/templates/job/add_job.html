@@ -1,0 +1,28 @@
+{% extends 'job/base.html' %}
+{% block content %}
+    <div style="margin-top: 1%;" class="text-box1">
+        <form v-on:submit="validateForm" method="POST" enctype="multipart/form-data" action=".">
+            {% csrf_token %} 
+            <h2 style="font-size: 30px;margin-bottom: 5px;">Add Job</h2>
+            <div><input class="input" type="text" name="title" id="id_title" placeholder="Title" required="required" /></div>
+            <div><textarea class="body" name="short_description" id="id_short_description" style="white-space: pre-wrap;border-color: white;height: 35px;" placeholder="Short Description" required="required"></textarea></div>
+            <div><textarea class="body" name="long_description" id="id_long_description" style="white-space: pre-wrap;border-color: white;" placeholder="Long Description" required="required"></textarea></div>
+            <div><input class="input" type="text" name="company_name" id="id_company_name" placeholder="Company Name" required="required" /></div>
+            <div><input class="input" type="text" name="company_address" id="id_company_address" placeholder="Company Address" required="required" /></div>
+            <div><input class="input" type="text" name="company_zipcode" id="id_company_zipcode" placeholder="Company ZipCode" required="required" /></div>
+            <div><input class="input" type="text" name="company_place" id="id_company_place" placeholder="Company Place" required="required" /></div>
+            <div><input class="input" type="text" name="company_country" id="id_company_country" placeholder="Company Country" required="required" /></div>
+            <div style="margin-top: 2%;">
+                <select name="company_size" v-model="company_size">
+                    <option value="">Deadline (Days)</option>
+                    <option value="size_1-9">5</option>
+                    <option value="size_10-49">15</option>
+                    <option value="size_50-99">25</option>
+                    <option value="size_100">30+</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="red-btn" style="margin-top: 2%;margin-bottom: 5%;">Publish</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'job/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="title" style="padding-top: 1%;padding-bottom: 2.5%;margin: auto;margin-bottom: 3%;margin-top: 2%;">Notifications</h1>
+
+        {% if not notifications %}
+            <div class="notification" style="text-align: center;">
+                <p>
+                    <strong>No notifications yet!</strong>
+                </p>
+            </div>
+        {% endif %}
+
+        {% for notification in notifications %}
+            <div class="notification">
+                <p>
+                    {% if notification.notification_type == 'message' %}
+                        <a href="{% url 'notifications' %}?goto=view_application&notification={{ notification.id }}&extra_id={{ notification.extra_id }}">
+                            <strong>{{ notification.created_by.username }}</strong> sent you a message<br>
+                            <small>{{ notification.created_at|timesince }} ago</small>
+                        </a>
+                    {% elif notification.notification_type == 'application' %}
+                        <a href="{% url 'notifications' %}?goto=view_application&notification={{ notification.id }}&extra_id={{ notification.extra_id }}">
+                            <strong>{{ notification.created_by.username }}</strong> applied for your job<br>
+                            <small>{{ notification.created_at|timesince }} ago</small>
+                        </a>
+                    {% endif %}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

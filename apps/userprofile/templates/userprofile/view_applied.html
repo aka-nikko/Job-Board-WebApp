@@ -1,0 +1,28 @@
+{% extends 'userprofile/base.html' %}
+{% block content %}
+    <div class="text-box1">
+        <h1>Job Listings</h1>
+        <h2 style="margin-bottom: -20px;">Jobs:</h2>
+
+        {% for application in request.user.applications.all %}
+        <div class="comments-container" >
+            <ul id="comments-list" class="comments-list">
+                    <div class="comment-box">
+                        <div class="comment-head">
+                            <span style="color: rgb(9, 16, 107);">{{application.job.created_at}}</span>
+                        </div>
+                        <div class="comment-content" style="font-weight:bold;font-size: 25px; padding: 5px;border-bottom: 1px solid #E5E5E5;">
+                            <a style="text-decoration: none;" href="{% url 'view_application' application.id %}">{{application.job.title}}</a></div>
+                        <div class="comment-content" style="border-bottom: 1px solid #E5E5E5;white-space: pre-wrap;text-align: justify;">{{application.job.short_description}}</div>
+                    </div>
+            </ul>
+        </div>
+        {% endfor %}
+        <div style="margin-bottom: 20px;margin-top: 10px;">
+            {%if data.has_previous%}
+            <a href="{%url 'explore'%}?page={{data.previous_page_number}}" style="color: white;" class="blue-btn">Previous</a> {%endif%} {%if data.has_next%}
+            <a href="{%url 'explore'%}?page={{data.next_page_number}}" style="color: white;" class="blue-btn">Next</a> {%endif%}
+        </div>
+    </div>
+    <br>
+{% endblock %}

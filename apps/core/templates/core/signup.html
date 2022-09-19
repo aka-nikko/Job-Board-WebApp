@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <div class="text-box" style="margin-top: 5%;">
+        <h1 style="font-size: 50px;">Sign Up</h1>
+        <form method="POST" action=".">
+            {% csrf_token %}
+            <form>
+                <div><input class="input" style="margin-top: 2%;" type="text" name="username"  id="id_username" placeholder="Username" required="required" /></div>
+                <div><input id="id_password1" class="input" style="margin-top: 10px;" type="password" name="password1" placeholder="Password" pattern=".{8,}" required="required" required title="8 characters minimum" /></div>
+                <div><input id="is_password2" class="input" style="margin-top: 10px;" type="password" name="password2" placeholder="Confirm Password" pattern=".{8,}" required="required" required title="8 characters minimum" /></div>
+                <p style="margin-bottom: 1%;">Account type</p>
+                <div style="margin-bottom: 1%;">
+                    <select name="account_type" style="width:15%;text-align: center; border: 1px solid var(--select-border);border-radius: 0.25em;padding: 0.25em 0.5em;font-size: 1.25rem;cursor: pointer;line-height: 1.1;background-color: #fff;background-image: linear-gradient(to top, #f9f9f9, rgb(214, 206, 206) 33%);">
+                        <option value="jobseeker" selected>Job seeker</option>
+                        <option value="employer">Employer</option>
+                    </select>
+                </div>
+                <div><button type="submit" class="blue-btn">Sign Up.</button></div>
+            </form>
+        </form>
+    </div>
+{% endblock %}

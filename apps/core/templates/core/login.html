@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <div class="text-box" style="margin-top: 5%;">
+        <h1>Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            <form>
+            <div><input class="input" type="text" name="username" id="id_username" placeholder="Username" required="required" /></div>
+            <div><input id="id_password" class="input" style="margin-top: 25px;margin-bottom: 30px;" type="password" name="password" placeholder="Password" required="required" /></div>    
+            <div><button type="submit" class="blue-btn">Let me in.</button></div>
+            </form>
+        </form>
+        <p style="margin-top: 50px;margin-bottom: 25px;">Don't Have An Account?</p>
+        <a href="/signup" type="submit" class="blue-btn">Sign Up.</a>
+    </div>
+{% endblock %}

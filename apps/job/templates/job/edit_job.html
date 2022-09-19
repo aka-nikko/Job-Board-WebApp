@@ -1,0 +1,34 @@
+{% extends 'job/base.html' %}
+{% block content %}
+    <div style="margin-top: 1%;" class="text-box1">
+        <form v-on:submit="validateForm" method="POST" enctype="multipart/form-data" action=".">
+            {% csrf_token %} 
+            <h2 style="font-size: 30px;margin-bottom: 5px;">Edit Job</h2>
+            <div><input class="input" type="text" name="title" id="id_title" placeholder="Title" value="{{job.title}}" required="required" /></div>
+            <div><textarea class="body" name="short_description" id="id_short_description" style="white-space: pre-wrap;border-color: white;" placeholder="Short Description" required="required">{{ job.short_description }}</textarea></div>
+            <div><textarea class="body" name="long_description" id="id_long_description" style="white-space: pre-wrap;border-color: white;" placeholder="Long Description" required="required">{{ job.long_description }}</textarea></div>
+            <div><input class="input" type="text" name="company_name" id="id_company_name" placeholder="Company Name" value="{{ job.company_name }}" required="required" /></div>
+            <div><input class="input" type="text" name="company_address" id="id_company_address" placeholder="Company Address" value="{{ job.company_address }}" required="required" /></div>
+            <div><input class="input" type="text" name="company_zipcode" id="id_company_zipcode" placeholder="Company ZipCode" value="{{ job.company_zipcode }}" required="required" /></div>
+            <div><input class="input" type="text" name="company_place" id="id_company_place" placeholder="Company Place" value="{{ job.company_place }}" required="required" /></div>
+            <div><input class="input" type="text" name="company_country" id="id_company_country" placeholder="Company Country" value="{{ job.company_country }}" required="required" /></div>
+            <div style="margin-top: 2%;">
+                <select name="company_size" v-model="company_size">
+                    <option value="">Choose Size</option>
+                    <option value="size_1-9">1-9</option>
+                    <option value="size_10-49">10-49</option>
+                    <option value="size_50-99">50-99</option>
+                    <option value="size_100">100+</option>
+                </select>
+            </div>
+            <div style="margin-top: 2%;">
+                <select name="status">
+                    <option value="active"{% if job.status == 'active' %} selected{% endif %}>Active</option>
+                    <option value="employed"{% if job.status == 'employed' %} selected{% endif %}>Employed</option>
+                    <option value="archived"{% if job.status == 'archived' %} selected{% endif %}>Archived</option>
+                </select>
+            </div>
+            <button type="submit" class="red-btn" style="margin-top: 2%;margin-bottom: 5%;">Save</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'userprofile/base.html' %}
+{% block content %}
+    <div class="text-box1" id="dragparent">
+        <h1>Job Listings</h1>
+        <h2>Jobs:</h2>
+        {% for job in jobs %}
+        <div class="comments-container">
+            <ul id="comments-list" class="comments-list">
+                    <div class="comment-box">
+                        {% if job.company_size == "size_1-9" %}
+                            <div class="comment-head" style="background-color: red;">
+                        {% elif job.company_size == "size_10-49" %}
+                            <div class="comment-head" style="background-color: blue;">
+                        {% elif job.company_size == "size_50-99" %}
+                            <div class="comment-head" style="background-color: yellow;">
+                        {% elif job.company_size == "size_100" %}
+                            <div class="comment-head" style="background-color: green;">
+                        {% endif %}
+                            <span style="color: rgb(255, 255, 255);">{{job.created_at}}</span>
+                        </div>
+                        <div class="comment-content" style="font-weight:bold;font-size: 25px; padding: 5px;border-bottom: 1px solid #E5E5E5;">
+                            <a style="text-decoration: none;" href="{% url 'view_dashboard_job' job.id %}">{{job.title}}</a></div>
+                        <div class="comment-content" style="border-bottom: 1px solid #E5E5E5;white-space: pre-wrap;text-align: justify;">{{job.short_description}}</div>
+                    </div>
+            </ul>
+        </div>
+        {% endfor %}
+        <br>
+{% endblock %}
